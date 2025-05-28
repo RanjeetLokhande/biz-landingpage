@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Popup Demo Form</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+    .form-wrapper {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+    form input {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px 16px; /* Added horizontal padding */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    form button {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      width: 100%;
+    }
+    .success-message {
+      display: none;
+      color: green;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <h2>Book a Free Demo</h2>
+    <form id="demoForm">
+      <input type="text" name="user_name" placeholder="Name*" required />
+      <input type="email" name="user_email" placeholder="Email*" required />
+      <input type="tel" name="user_phone" placeholder="Phone*" required />
+      <input type="text" name="company_name" placeholder="Company Name*" required />
+      <input type="number" name="no_of_users" placeholder="No of Users Required*" required />
+      <button type="submit">GET STARTED</button>
+    </form>
+    <div class="success-message" id="successMsg">Demo request sent successfully!</div>
+  </div>
+
+  <script>
+    emailjs.init("9hG1Tr9mXBHo1kUvM"); // Replace with your EmailJS User ID
+
+    document.getElementById("demoForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const form = this;
+
+      emailjs.sendForm("service_h7tnb8r", "template_pma9chk", form)
+        .then(() => {
+          form.reset();
+          document.getElementById("successMsg").style.display = "block";
+        }, (error) => {
+          alert("Failed to send: " + JSON.stringify(error));
+        });
+    });
+  </script>
+
+</body>
+</html>

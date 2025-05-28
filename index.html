@@ -36,6 +36,37 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+   <style>
+    #formContainer {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 25%;
+      width: 50%;
+      height: 80%;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 8px;
+    }
+    #formContainer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #closeBtn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -113,7 +144,14 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted flex-md-shrink-0" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted flex-md-shrink-0" href="javascript:void(0)" onclick="showForm()">Get Started</a>
+
+      <div id="formContainer">
+        <button id="closeBtn" onclick="hideForm()">X</button>
+        <iframe src="popup-form.html"></iframe>
+      </div>
+
+
 
     </div>
   </header>
@@ -130,7 +168,8 @@
             <!-- <p data-aos="fade-up" data-aos-delay="100">We are team of talented designers making websites with Bootstrap</p> -->
             <p data-aos="fade-up" data-aos-delay="100">Trusted by 10,000+ Users</p>
             <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-              <a href="#about" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
+              <a href="#demoForm" class="btn-get-started" onclick="showForm()">Get Started <i class="bi bi-arrow-right"></i></a>
+
               <a href="https://www.youtube.com/watch?v=69O_aAT48vw&t=18s"
                 class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i
                   class="bi bi-play-circle"></i><span>Watch Video</span></a>
@@ -468,11 +507,11 @@
     </section>
     <!-- /Alt Features Section -->
 
-     <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>WhatsApp</h2>
-        <p>WhatsApp Marketing Automation<br></p>
-      </div><!-- End Section Title -->
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>WhatsApp</h2>
+      <p>WhatsApp Marketing Automation<br></p>
+    </div><!-- End Section Title -->
 
     <!-- Alt Features Section -->
     <!-- <section id="alt-features" class="alt-features section">
@@ -504,47 +543,47 @@
 
     <section id="alt-features" class="alt-features section">
 
-  <div class="container">
+      <div class="container">
 
-    <div class="row gy-5">
+        <div class="row gy-5">
 
-      <div class="col-xl-7 d-flex order-2 order-xl-2" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-xl-7 d-flex order-2 order-xl-2" data-aos="fade-up" data-aos-delay="200">
 
-        <div class="row align-self-center gy-5">
+            <div class="row align-self-center gy-5">
 
-          <!-- Broadcast Feature -->
-          <div class="col-md-12">
-            <h3><strong>Broadcast</strong></h3>
-            <ul>
-              <li>Maximize campaign reach through WhatsApp with exceptional response rates.</li>
-              <li>Organize and categorize contacts to enable targeted, personalized messaging.</li>
-              <li>Foster long-term customer relationships and drive sales with consistent WhatsApp engagement.</li>
-            </ul>
+              <!-- Broadcast Feature -->
+              <div class="col-md-12">
+                <h3><strong>Broadcast</strong></h3>
+                <ul>
+                  <li>Maximize campaign reach through WhatsApp with exceptional response rates.</li>
+                  <li>Organize and categorize contacts to enable targeted, personalized messaging.</li>
+                  <li>Foster long-term customer relationships and drive sales with consistent WhatsApp engagement.</li>
+                </ul>
+              </div>
+
+              <!-- Online Chat CRM Feature -->
+              <div class="col-md-12">
+                <h3><strong>Online Chat CRM</strong></h3>
+                <ul>
+                  <li>Collaborate across your team with a shared WhatsApp inbox for seamless customer support.</li>
+                  <li>Enrich communication with pre-built integrations that bring in customer context.</li>
+                  <li>Manage order inquiries, provide post-sales updates, and resolve issues—all through WhatsApp.</li>
+                </ul>
+              </div>
+
+            </div>
+
           </div>
 
-          <!-- Online Chat CRM Feature -->
-          <div class="col-md-12">
-            <h3><strong>Online Chat CRM</strong></h3>
-            <ul>
-              <li>Collaborate across your team with a shared WhatsApp inbox for seamless customer support.</li>
-              <li>Enrich communication with pre-built integrations that bring in customer context.</li>
-              <li>Manage order inquiries, provide post-sales updates, and resolve issues—all through WhatsApp.</li>
-            </ul>
+          <div class="col-xl-5 d-flex align-items-center order-1 order-xl-1" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/img/Whatspp_Website.gif" class="img-fluid" alt="">
           </div>
 
         </div>
 
       </div>
 
-      <div class="col-xl-5 d-flex align-items-center order-1 order-xl-1" data-aos="fade-up" data-aos-delay="100">
-        <img src="assets/img/Whatspp_Website.gif" class="img-fluid" alt="">
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
 
@@ -652,7 +691,7 @@
             </div>
           </div><!-- End Service Item -->
 
-          
+
 
         </div>
 
@@ -849,14 +888,14 @@
     <!-- Portfolio Section -->
     <!-- <section id="portfolio" class="portfolio section"> -->
 
-      <!-- Section Title -->
-      <!-- <div class="container section-title" data-aos="fade-up">
+    <!-- Section Title -->
+    <!-- <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
         <p>Check our latest work</p>
       </div> -->
-      <!-- End Section Title -->
+    <!-- End Section Title -->
 
-      <!-- <div class="container">
+    <!-- <div class="container">
 
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
@@ -1108,8 +1147,8 @@
                 </div>
                 <p>
                   "BizPlus CRM has completely transformed the way we manage our customers and streamline our business
-                    processes. The affordability and user-friendly interface make it an unbeatable solution for
-                    businesses like ours. It has simplified customer interactions and improved our overall efficiency."
+                  processes. The affordability and user-friendly interface make it an unbeatable solution for
+                  businesses like ours. It has simplified customer interactions and improved our overall efficiency."
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
@@ -1126,9 +1165,9 @@
                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                 "We absolutely love how seamless and efficient BizPlus CRM is. It has significantly improved our
-                    workflow, allowing us to handle customer relationships with ease. For small businesses looking to
-                    expand and scale, this CRM is the perfect tool to support growth without unnecessary complexity."
+                  "We absolutely love how seamless and efficient BizPlus CRM is. It has significantly improved our
+                  workflow, allowing us to handle customer relationships with ease. For small businesses looking to
+                  expand and scale, this CRM is the perfect tool to support growth without unnecessary complexity."
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -1145,9 +1184,9 @@
                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                 "BizPlus CRM stands out as a simple yet powerful solution for customer management. It is both
-                    effective and budget-friendly, making it an excellent choice for businesses that want to optimize
-                    their operations without overspending. Managing our customers has never been easier!"
+                  "BizPlus CRM stands out as a simple yet powerful solution for customer management. It is both
+                  effective and budget-friendly, making it an excellent choice for businesses that want to optimize
+                  their operations without overspending. Managing our customers has never been easier!"
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
@@ -1164,9 +1203,9 @@
                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                 </div>
                 <p>
-                "This is by far the best CRM solution we have used! The automation features save us valuable time,
-                    and the WhatsApp integration has revolutionized how we communicate with clients. It has truly
-                    enhanced our customer engagement and efficiency."
+                  "This is by far the best CRM solution we have used! The automation features save us valuable time,
+                  and the WhatsApp integration has revolutionized how we communicate with clients. It has truly
+                  enhanced our customer engagement and efficiency."
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -1184,9 +1223,9 @@
                 </div>
                 <p>
                   " BizPlus CRM is a fantastic option for any business seeking a cost-effective yet feature-rich CRM
-                    system. It offers a range of functionalities that cater to our needs, helping us stay on top of our
-                    customer relationships. We highly recommend it to other businesses looking for a smart and
-                    affordable solution."
+                  system. It offers a range of functionalities that cater to our needs, helping us stay on top of our
+                  customer relationships. We highly recommend it to other businesses looking for a smart and
+                  affordable solution."
                 </p>
                 <div class="profile mt-auto">
                   <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
@@ -1207,18 +1246,18 @@
     <!-- Team Section -->
     <!-- <section id="team" class="team section"> -->
 
-      <!-- Section Title -->
-      <!-- <div class="container section-title" data-aos="fade-up">
+    <!-- Section Title -->
+    <!-- <div class="container section-title" data-aos="fade-up">
         <h2>Team</h2>
         <p>Our hard working team</p>
       </div> -->
-      <!-- End Section Title -->
+    <!-- End Section Title -->
 
-      <!-- <div class="container">
+    <!-- <div class="container">
 
         <div class="row gy-4"> -->
 
-          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+    <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="team-member">
               <div class="member-img">
                 <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
@@ -1237,9 +1276,9 @@
               </div>
             </div>
           </div> -->
-          <!-- End Team Member -->
+    <!-- End Team Member -->
 
-          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+    <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
                 <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
@@ -1258,9 +1297,9 @@
               </div>
             </div>
           </div> -->
-          <!-- End Team Member -->
+    <!-- End Team Member -->
 
-          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+    <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="team-member">
               <div class="member-img">
                 <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
@@ -1279,9 +1318,9 @@
               </div>
             </div>
           </div> -->
-          <!-- End Team Member -->
+    <!-- End Team Member -->
 
-          <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+    <!-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
             <div class="team-member">
               <div class="member-img">
                 <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
@@ -1300,9 +1339,9 @@
               </div>
             </div>
           </div> -->
-          <!-- End Team Member -->
+    <!-- End Team Member -->
 
-        <!-- </div>
+    <!-- </div>
 
       </div>
 
@@ -1383,18 +1422,18 @@
     <!-- Recent Posts Section -->
     <!-- <section id="recent-posts" class="recent-posts section"> -->
 
-      <!-- Section Title -->
-      <!-- <div class="container section-title" data-aos="fade-up">
+    <!-- Section Title -->
+    <!-- <div class="container section-title" data-aos="fade-up">
         <h2>Recent Posts</h2>
         <p>Recent posts form our Blog</p>
       </div> -->
-      <!-- End Section Title -->
+    <!-- End Section Title -->
 
-      <!-- <div class="container">
+    <!-- <div class="container">
 
         <div class="row gy-5"> -->
 
-          <!-- <div class="col-xl-4 col-md-6">
+    <!-- <div class="col-xl-4 col-md-6">
             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
               <div class="post-img position-relative overflow-hidden">
@@ -1425,8 +1464,8 @@
 
             </div>
           </div> -->
-          <!-- End post item -->
-<!-- 
+    <!-- End post item -->
+    <!-- 
           <div class="col-xl-4 col-md-6">
             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
 
@@ -1458,9 +1497,9 @@
 
             </div>
           </div> -->
-          <!-- End post item -->
+    <!-- End post item -->
 
-          <!-- <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+    <!-- <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="post-item position-relative h-100">
 
               <div class="post-img position-relative overflow-hidden">
@@ -1491,9 +1530,9 @@
 
             </div>
           </div> -->
-          <!-- End post item -->
+    <!-- End post item -->
 
-        <!-- </div>
+    <!-- </div>
 
       </div>
 
@@ -1695,6 +1734,15 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function showForm() {
+      document.getElementById('formContainer').style.display = 'block';
+    }
+    function hideForm() {
+      document.getElementById('formContainer').style.display = 'none';
+    }
+  </script>
 
 </body>
 
