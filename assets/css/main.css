@@ -784,6 +784,10 @@ section,
   overflow: clip;
 }
 
+  .carousel{
+    padding: 0%;
+  }
+
 @media (max-width: 1199px) {
 
   section,

@@ -38,68 +38,121 @@
   ======================================================== -->
 
   <style>
+    .btn-getstarted {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* Backdrop */
+    #modalBackdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    /* Modal Container */
     #formContainer {
       display: none;
       position: fixed;
-      top: 10%;
-      left: 25%;
-      width: 50%;
-      height: 80%;
+      inset: 0;
+      margin: auto;
+      width: 90%;
+      max-width: 400px;
+      height: auto;
+      max-height: 70%;
       background: white;
       border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       z-index: 1000;
       border-radius: 8px;
+      overflow-y: auto;
+      /* padding-top: 30px; */
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      #formContainer {
+        width: 95%;
+        height: auto;
+        border-radius: 0;
+      }
     }
 
     #formContainer iframe {
       width: 100%;
-      height: 100%;
+      height: 500px;
       border: none;
     }
 
     #closeBtn {
       position: absolute;
-      top: 5px;
+      top: 10px;
       right: 10px;
       background: red;
       color: white;
       border: none;
       cursor: pointer;
       padding: 5px 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      z-index: 1001;
     }
-#carouselExampleIndicators {
-  height: 50vh;
-  padding-left: 20px;  /* Left padding */
-  padding-right: 20px; /* Right padding */
-}
 
-.carousel-item img {
-  object-fit: contain; /* Ensure the full image is displayed */
-  width: 100%;
-  height: 100%;  /* This ensures the image is scaled correctly within the container */
-  display: block;  /* Prevents any unwanted spacing around the image */
-}
+    #closeBtn:hover {
+      background: darkred;
+    }
 
-/* Adjust for medium devices (tablet and up) */
-@media (min-width: 768px) {
-  #carouselExampleIndicators {
-    height: 60vh;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-}
+    #carouselExampleIndicators {
+      height: 50vh;
+      padding-left: 20px;
+      /* Left padding */
+      padding-right: 20px;
+      /* Right padding */
+    }
 
-/* Adjust for larger screens (desktops and up) */
-@media (min-width: 1200px) {
-  #carouselExampleIndicators {
-    height: 60vh;
-    /* padding-left: 50px;
-    padding-right: 50px; */
-  }
-}
+    .carousel-item img {
+      object-fit: contain;
+      /* Ensure the full image is displayed */
+      width: 100%;
+      height: 100%;
+      /* This ensures the image is scaled correctly within the container */
+      display: block;
+      /* Prevents any unwanted spacing around the image */
+    }
 
+    /* Adjust for medium devices (tablet and up) */
+    @media (min-width: 768px) {
+      #carouselExampleIndicators {
+        height: 60vh;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+
+    /* Adjust for larger screens (desktops and up) */
+    @media (min-width: 1200px) {
+      #carouselExampleIndicators {
+        height: 100vh;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+    }
   </style>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("9hG1Tr9mXBHo1kUvM"); // Replace with your actual EmailJS user ID
+  </script>
+
 </head>
 
 <body class="index-page">
@@ -123,8 +176,8 @@
           <li><a href="#hero" class="active">Home<br></a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <!-- <li><a href="#team">Team</a></li> -->
           <!-- <li><a href="blog.html">Blog</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
@@ -177,8 +230,12 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted flex-md-shrink-0" href="javascript:void(0)" onclick="showForm()">Get Started</a>
+      <a class="btn-getstarted" href="javascript:void(0)" onclick="showForm()">Get Started</a>
 
+      <!-- Backdrop -->
+      <div id="modalBackdrop" onclick="hideForm()"></div>
+
+      <!-- Modal Container -->
       <div id="formContainer">
         <button id="closeBtn" onclick="hideForm()">X</button>
         <iframe src="popup-form.html"></iframe>
@@ -216,16 +273,23 @@
       </div>
 
     </section><!-- /Hero Section -->
-<section class="">
-  <div id="carouselExampleIndicators" class="carousel slide">
+    <section class="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+        aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+        aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+        aria-label="Slide 6"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6"
+        aria-label="Slide 7"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -250,16 +314,19 @@
         <img src="assets/img/Snaps/7.png" class="d-block w-100" alt="...">
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
 </section>
+
 
 
 
@@ -890,31 +957,28 @@
             <div class="faq-container">
 
               <div class="faq-item faq-active">
-                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                <h3>How can a CRM help my business grow?</h3>
                 <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur
-                    gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                  <p>Bizplus CRM helps you stay connected with your customers, follow up at the right time, and never
+                    miss a sales opportunity. That means happier customers and more sales.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                <h3>Can I use CRM for my sales team?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet
-                    id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque
-                    elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                  <p>Yes, absolutely. Bizplus CRM helps your sales team track leads, schedule meetings, send quotes, and
+                    close deals faster. Everyone knows what’s going on, and no opportunity slips through the cracks.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                <h3>Is CRM software hard to use?</h3>
                 <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar
-                    elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque
-                    eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis
-                    sed odio morbi quis</p>
+                  <p>Not if it’s designed well! Tools like BizPlus CRM are made to be simple and user-friendly—even if
+                    you’re not a tech expert. You can get started in minutes.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -928,30 +992,28 @@
             <div class="faq-container">
 
               <div class="faq-item">
-                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
+                <h3>Can a CRM help with customer support too?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet
-                    id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque
-                    elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                  <p>Definitely. CRM helps you track customer issues, respond quickly, and build stronger relationships
+                    over time. Happy customers are loyal customers.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h3>
+                <h3>Is my data safe in a CRM?</h3>
                 <div class="faq-content">
-                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in.
-                    Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est.
-                    Purus gravida quis blandit turpis cursus in</p>
+                  <p>Good CRMs (like BizPlus CRM) use top-level security to protect your data. Your customer info stays
+                    private, backed up, and secure at all times.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
+                <h3>Can I use CRM on my phone?</h3>
                 <div class="faq-content">
-                  <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi.
-                    Distinctio ipsam dolore et.</p>
+                  <p>Yes, many CRMs have mobile apps or responsive dashboards. With BizPlus CRM, you can manage your
+                    business from anywhere—right from your phone or tablet.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -1640,8 +1702,8 @@
                 <div class="info-item" data-aos="fade" data-aos-delay="200">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>A108 Adam Street</p>
-                  <p>New York, NY 535022</p>
+                  <p>Dhruta Complex, Office 104 & 105,</p>
+                  <p>Narayan Peth, Pune, Maharashtra.</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -1649,8 +1711,8 @@
                 <div class="info-item" data-aos="fade" data-aos-delay="300">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
-                  <p>+1 6678 254445 41</p>
+                  <p>+91 88 99 077 077</p>
+                  <p>+91 70 30 32 3838</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -1658,8 +1720,8 @@
                 <div class="info-item" data-aos="fade" data-aos-delay="400">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>info@example.com</p>
-                  <p>contact@example.com</p>
+                  <p>support@bizpluscrm.com</p>
+                  <!-- <p>contact@example.com</p> -->
                 </div>
               </div><!-- End Info Item -->
 
@@ -1668,7 +1730,7 @@
                   <i class="bi bi-clock"></i>
                   <h3>Open Hours</h3>
                   <p>Monday - Friday</p>
-                  <p>9:00AM - 05:00PM</p>
+                  <p>9:00AM - 06:00PM</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -1676,9 +1738,8 @@
 
           </div>
 
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-              data-aos-delay="200">
+          <div class="col-lg-6 pt-10 p-0">
+            <form id="contactForm" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -1698,11 +1759,10 @@
                 </div>
 
                 <div class="col-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
+                  <div class="loading" style="display: none;">Loading</div>
+                  <div class="error-message" style="display: none;"></div>
+                  <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+                  <button type="submit" class="btn-getstarted px-4 py-2">Send Message</button>
                 </div>
 
               </div>
@@ -1741,13 +1801,13 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">FlexStart</span>
+            <span class="sitename">BizPlusCRM</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Dhruta Complex, Office 104 & 105,</p>
+            <p>Narayan Peth, Pune, Maharashtra.</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 88 99 077 077</span></p>
+            <p><strong>Email:</strong> <span>support@bizpluscrm.com</span></p>
           </div>
         </div>
 
@@ -1766,19 +1826,20 @@
           <ul>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">App Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Digital Marketing</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12">
           <h4>Follow Us</h4>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+          <!-- <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p> -->
           <div class="social-links d-flex">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://twitter.com/LandmarkTechs"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/BizPlusCRM/"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/bizpluscrm/"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/bizplus-crm/posts/?feedView=all"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.youtube.com/@bizplus7297"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
 
@@ -1786,14 +1847,14 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">FlexStart</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">BizPlusCRM</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
-          href=“https://themewagon.com>ThemeWagon
+        Designed by <a href="https://bizondigital.com/">BizOnDigital</a> Distributed by <a
+          href="index.html">BizPlusCRM
       </div>
     </div>
 
@@ -1824,6 +1885,34 @@
       document.getElementById('formContainer').style.display = 'none';
     }
   </script>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const form = this;
+      const loading = form.querySelector(".loading");
+      const errorMsg = form.querySelector(".error-message");
+      const sentMsg = form.querySelector(".sent-message");
+
+      loading.style.display = "block";
+      errorMsg.style.display = "none";
+      sentMsg.style.display = "none";
+
+      emailjs.sendForm("service_h7tnb8r", "template_y04twyh", form)
+        .then(() => {
+          loading.style.display = "none";
+          sentMsg.style.display = "block";
+          form.reset();
+        }, (error) => {
+          loading.style.display = "none";
+          errorMsg.style.display = "block";
+          errorMsg.innerText = "Failed to send message. Please try again later.";
+          console.error("EmailJS error:", error);
+        });
+    });
+  </script>
+
 
 </body>
 
