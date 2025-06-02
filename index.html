@@ -258,7 +258,9 @@
             <!-- <p data-aos="fade-up" data-aos-delay="100">We are team of talented designers making websites with Bootstrap</p> -->
             <p data-aos="fade-up" data-aos-delay="100">Trusted by 10,000+ Users</p>
             <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
-              <a href="#demoForm" class="btn-get-started" onclick="showForm()">Book Free Demo <i
+              <!-- <a href="#demoForm" class="btn-get-started" onclick="showForm()">Book Free Demo <i -->
+                <a href="#demoe" class="btn-get-started" onclick="showForm()">Book Free Demo <i
+
                   class="bi bi-arrow-right"></i></a>
 
               <a href="https://www.youtube.com/watch?v=69O_aAT48vw&t=18s"
@@ -1657,47 +1659,38 @@
 
           </div>
 
-          <div class="col-lg-6 ">
-            <form id="contactForm"  data-aos="fade-up" data-aos-delay="200">
-
-              <input type="hidden" name="form_id" value="form2">
-
+          <div class="col-lg-6">
+            <form id="demoe" action="api/curl.php" method="post" data-aos="fade-up" data-aos-delay="200">
+              <input type="hidden" name="form_id" value="form2"> <!-- Important hidden field -->
+          
               <div class="row gy-4">
-
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name*" required="">
+                  <input type="text" name="name" class="form-control" placeholder="Name*" required>
                 </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email*" required="">
+                
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Email*" required>
                 </div>
-
+          
                 <div class="col-12">
-                  <input type="tel" class="form-control" name="user_phone" placeholder="Phone*" required="">
+                  <input type="tel" class="form-control" name="user_phone" placeholder="Phone*" required>
                 </div>
-
-                 <div class="col-12">
-                  <input type="text" class="form-control" name="company_name" placeholder="Company Name*" required="">
-                </div>
-
-                 <div class="col-12">
-                  <input type="number" class="form-control" name="no_of_users" placeholder="No of Users Required*" required="">
-                </div>
-
+          
                 <div class="col-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message"></textarea>
+                  <input type="text" class="form-control" name="company_name" placeholder="Company Name*" required>
                 </div>
-
+          
+                <div class="col-12">
+                  <input type="number" class="form-control" name="no_of_users" placeholder="No of Users Required*" required>
+                </div>
+          
                 <div class="col-12 text-center">
-                  <div class="loading" style="display: none;">Loading</div>
-                  <div class="error-message" style="display: none;"></div>
-                  <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
                   <button type="submit" class="btn-getstarted px-4 py-2">Send Message</button>
                 </div>
-
               </div>
             </form>
           </div>
+          
           <!-- End Contact Form -->
 
         </div>

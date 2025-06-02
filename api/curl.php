@@ -57,12 +57,11 @@ $response = curl_exec($curl);
 // Error check
 if ($response === false) {
     $error = curl_error($curl);
-    // Optional: log error
+    die("Error submitting form: " . $error);
 }
 
 curl_close($curl);
 
-// Redirect
-header("Location: thankyou.html");
-exit;
+// Return success message
+echo "✅ Thank you! Your demo request was submitted successfully. We'll get back to you shortly.";
 ?>
