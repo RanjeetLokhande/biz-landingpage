@@ -1,8 +1,14 @@
 <?php
+// Enable error reporting (for debugging during development)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Check which form is submitted
 $form_id = $_POST['form_id'] ?? '';
 
 if ($form_id === 'form1') {
-    // Existing form logic
+    // Form 1 logic
     $name = $_POST["user_name"] ?? '';
     $email = $_POST["user_email"] ?? '';
     $phone = $_POST["user_phone"] ?? '';
@@ -13,7 +19,7 @@ if ($form_id === 'form1') {
     $requirement = "No of Users Required: " . $no_of_users;
 
 } elseif ($form_id === 'form2') {
-    // New form logic
+    // Form 2 logic
     $name = $_POST["name"] ?? '';
     $email = $_POST["email"] ?? '';
     $phone = $_POST["user_phone"] ?? '';
@@ -22,10 +28,9 @@ if ($form_id === 'form1') {
     $message = $_POST["message"] ?? '';
 
     $address = $company;
-    $requirement = "No of Users Required: " . $no_of_users . ". Message: " . $message;
+    $requirement = "No of Users Required: $no_of_users. Message: $message";
 
 } else {
-    // Unknown form
     die("Unknown form submitted.");
 }
 
@@ -36,7 +41,7 @@ $phone = urlencode($phone);
 $address = urlencode($address);
 $requirement = urlencode($requirement);
 
-// API URL
+// External API URL
 $url = "https://ltpl.bizpluscrm.com/api/Leads/Website?user=Website&pass=WebsiteAPI&name=$name&phone=$phone&email=$email&address=$address&requirement=$requirement";
 
 // cURL setup
@@ -51,24 +56,33 @@ curl_setopt_array($curl, array(
     )
 ));
 
-// Execute
+// Execute request
 $response = curl_exec($curl);
 
-// Error check
+// Handle errors
 if ($response === false) {
     $error = curl_error($curl);
-    die("Error submitting form: " . $error);
+    curl_close($curl);
+    echo "<!DOCTYPE html>
+    <html><head><meta charset='UTF-8'><title>Error</title></head>
+    <body>
+    <script>
+        alert('❌ Error submitting form: " . addslashes($error) . "');
+        window.top.location.href = '../popup-form.html?success=0';
+    </script>
+    </body></html>";
+    exit;
 }
 
 curl_close($curl);
 
-// Return success message
-// echo "✅ Thank you! Your demo request was submitted successfully. We'll get back to you shortly.";
-// Redirect to thank you page
-echo "<script>
-    alert('✅ Thank you! Your demo request was submitted successfully. We\\'ll get back to you shortly.');
-    window.top.location.href = 'thankyou.html';
-</script>";
-
+// Success — redirect to thank you page outside iframe
+echo "<!DOCTYPE html>
+<html><head><meta charset='UTF-8'><title>Redirecting...</title></head>
+<body>
+<script>
+    window.top.location.href = '../api/thankyou.html';
+</script>
+</body></html>";
 exit;
 ?>
