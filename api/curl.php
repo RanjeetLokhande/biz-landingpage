@@ -65,6 +65,10 @@ curl_close($curl);
 // Return success message
 // echo "✅ Thank you! Your demo request was submitted successfully. We'll get back to you shortly.";
 // Redirect to thank you page
-header("Location: thankyou.html");
+echo "<script>
+    alert('✅ Thank you! Your demo request was submitted successfully. We\\'ll get back to you shortly.');
+    window.top.location.href = 'thankyou.html';
+</script>";
+
 exit;
 ?>
